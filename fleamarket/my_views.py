@@ -7,3 +7,6 @@ def homepage(request):
 
 def contact_view(request):
     return render(request, "contact.html")
+
+def producers_view(request):
+    return render(request, "producers.html")
