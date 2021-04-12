@@ -1,0 +1,63 @@
+
+[
+  {
+    "owner": "Paul",
+    "category":"Lactate" ,
+
+    "name":"lapte",
+    "description": "Lapte de vaca",
+    "price":4,
+    "unit":"L",
+    "stock": 100
+  },
+  {
+    "owner": "Paul",
+    "category":"Lactate" ,
+
+    "name":"telemea",
+    "description": "telemea de vaca",
+    "price":10,
+    "unit":"kg",
+    "stock": 50
+  },
+  {
+    "owner": "Paul",
+    "category":"Lactate",
+
+    "name":"smantana",
+    "description": "smantana de vaca",
+    "price": 7,
+    "unit": "500g",
+    "stock": 20
+  },
+  {
+    "owner": "Paul",
+    "category": "Lactate",
+
+    "name": "cas",
+    "description": "lapte de vaca",
+    "price": 10,
+    "unit": "kg",
+    "stock": 20
+  },
+  {
+    "owner": "Paul",
+    "category":"Lactate" ,
+
+    "name":"branza dulce",
+    "description": "branza de vaca",
+    "price":5,
+    "unit":"kg",
+    "stock": 30
+  },
+    {
+    "owner": "Camelia",
+    "category":"avicole",
+
+    "name":"oua",
+    "description": "oua proaspete",
+    "price":1,
+    "unit":"buc",
+    "stock": 5555
+  }
+]

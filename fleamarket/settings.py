@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 'django.contrib.model_reviews',
+    # 'django.contrib.django_comments',
     'orders.apps.OrdersConfig',
     'producers.apps.ProducersConfig',
     'users.apps.UsersConfig',

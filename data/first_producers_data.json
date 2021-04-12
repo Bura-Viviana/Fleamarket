@@ -1,0 +1,43 @@
+[
+  {
+    "about":"produse proaspete de la ferma",
+    "user_info":{
+      "user_name":"Paul",
+      "first_name":"Paul",
+      "last_name": "Roman"
+    },
+    "picture": "producers/roman.jpg"
+  },
+  {
+    "about": "oua de la gaini crescute la curte",
+    "user_info":{
+      "user_name": "Camelia",
+      "first_name": "Camelia",
+      "last_name": "Lese"
+    }
+  },
+  {
+    "about": "miere de abine diferite sortimente",
+    "user_info": {
+      "user_name": "Mircea",
+      "first_name": "Mircea",
+      "last_name": "Manole"
+    }
+  },
+  {
+    "about": "sucuri naturale din fructe proaspete",
+    "user_info":{
+      "user_name": "Catalin",
+      "first_name": "Catalin",
+      "last_name": "Crisan"
+    }
+  },
+    {
+    "about": "miere de abine diferite sortimente",
+    "user_info": {
+      "user_name": "Andrei",
+      "first_name": "Andrei",
+      "last_name": "Moldovan"
+    }
+  }
+]

@@ -24,7 +24,8 @@ urlpatterns = [
     path("", homepage),
     path('contact/', contact_view),
     path('users/', include('users.urls')),
-    path('producers/', include('producers.producers_urls'))
+    path('producers/', include('producers.producers_urls')),
+    # path("users/", include('users.urls'))
 ]
 
 if settings.DEBUG:
