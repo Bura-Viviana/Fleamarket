@@ -13,23 +13,21 @@ class PhoneAndAddress(CustomModel):
     number = models.IntegerField()
     phone = models.IntegerField()
 
+
 class Reviews(CustomModel):
     comment = models.CharField(max_length=250)
-    state=models.CharField(max_length=250,default='prcossesing')
+    state = models.CharField(max_length=250, default='prcossesing')
+
     class Review(models.IntegerChoices):
-        is_target=1
-        is_writher=2
+        is_target = 1
+        is_writer = 2
     type = models.IntegerField(choices=Review.choices, null=False)
 
     class Stars(models.IntegerChoices):
-        o_stea=1
-        doua_stele=2
-        trei_stele=3
-    star=models.IntegerField(choices=Stars.choices, null= False, default=3)
-
-
-
-
+        one_star = 1
+        two_stars = 2
+        three_stars = 3
+    star = models.IntegerField(choices=Stars.choices, null=False, default=3)
 
 # Create your models here.
 # class Reviews(models.Model):
@@ -38,3 +36,8 @@ class Reviews(CustomModel):
 #     stars = models.IntegerField()
 #     text = models.CharField(max_lenght=255, null=True)
 #     state = models.CharField()
+
+
+class Customer(CustomModel):
+    user = models.OneToOneField(AuthUserModel, on_delete=models.CASCADE)
+    picture = models.ImageField(upload_to='customers', null=True, default='customers/default.jpg')

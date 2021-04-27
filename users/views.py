@@ -15,6 +15,4 @@ def register_view(request):
             form.save()
             return redirect('/')
 
-
-
     return render(request, 'users/register.html', {'form': form})

@@ -12,25 +12,27 @@ class RegisterForm(forms.Form):
     password = forms.CharField(label='Password', widget=forms.PasswordInput, required=True,
                                help_text=password_validators_help_text_html)
     confirm_password = forms.CharField(label='Confirm password', widget=forms.PasswordInput, required=True)
+    email = forms.CharField(label="Email", max_length=50, required=False)
+    type = forms.ChoiceField(label='User Type', widget=forms.RadioSelect, choices=(('producer', 'Producer'), ('customer', 'Customer')))
 
     def clean_username(self):
-        username=self.cleaned_data.get('username')
+        username = self.cleaned_data.get('username')
 
         try:
-            AuthUser.objects.get(username= username)
+            AuthUser.objects.get(username=username)
         except AuthUser.DoesNotExist:
             return username
         else:
-            raise forms.ValidationError('The username is already exist.')
+            raise forms.ValidationError(f'The username {username} already exists.')
 
     def clean_password(self):
-        first_name=self.cleaned_data.get('first_name')
-        last_name=self.cleaned_data.get('last_name')
-        username=self.cleaned_data.ger('username')
+        first_name = self.cleaned_data.get('first_name')
+        last_name = self.cleaned_data.get('last_name')
+        username = self.cleaned_data.get('username')
 
-        password = self.cleand_data.get('password')
+        password = self.cleaned_data.get('password')
 
-        user=AuthUser(
+        user = AuthUser(
             first_name=first_name,
             last_name=last_name,
             username=username
@@ -38,25 +40,35 @@ class RegisterForm(forms.Form):
         )
         validate_password(password, user)
         return password
+
     def clean_password_confirmation(self):
-        password=self.cleaned_data.get('password')
+        password = self.cleaned_data.get('password')
         password_confirmation = self.cleaned_data.get('password_confirmation')
         if password_confirmation != password:
             raise forms.ValidationError('incorrect password confirmation')
         return password_confirmation
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        parts = email.split('@')
+        if len(parts) != 2:
+            raise forms.ValidationError('Email must be like something@domain.com')
+        return email
+
     def save(self):
         first_name = self.cleaned_data.get('first_name')
         last_name = self.cleaned_data.get('last_name')
-        username = self.cleaned_data.ger('username')
+        username = self.cleaned_data.get('username')
 
-        password = self.cleand_data.get('password')
+        password = self.cleaned_data.get('password')
+        email = self.cleaned_data.get('email')
 
         user = AuthUser.objects.create_user(
             first_name=first_name,
             last_name=last_name,
             username=username,
-            password=password
+            password=password,
+            email=email
         )
         return user
 
