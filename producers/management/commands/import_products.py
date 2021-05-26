@@ -45,8 +45,8 @@ class Command(BaseCommand):
 
 
                 db_product=Products(
-                    id_category=db_category,
-                    id_owner=db_user,
+                    category=db_category,
+                    owner=db_user,
                     name=one_product["name"],
                     description=one_product["description"],
                     unit=one_product["unit"],

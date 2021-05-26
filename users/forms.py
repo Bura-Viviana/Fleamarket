@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password, password_validators_help_text_html
+from producers.models import Producers
 
 AuthUser = get_user_model()
 
@@ -59,9 +60,9 @@ class RegisterForm(forms.Form):
         first_name = self.cleaned_data.get('first_name')
         last_name = self.cleaned_data.get('last_name')
         username = self.cleaned_data.get('username')
-
         password = self.cleaned_data.get('password')
         email = self.cleaned_data.get('email')
+
 
         user = AuthUser.objects.create_user(
             first_name=first_name,
@@ -70,8 +71,12 @@ class RegisterForm(forms.Form):
             password=password,
             email=email
         )
+        if self.cleaned_data.get('type') == 'producer':
+            db_producer = Producers(
+                user=user,
+                about=f'{first_name} - {last_name}',
+                picture='producers/default.jpg'
+            )
+            db_producer.save()
+
         return user
-
-
-
-

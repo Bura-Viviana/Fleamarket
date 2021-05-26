@@ -43,6 +43,3 @@ class Command(BaseCommand):
 
         except FileNotFoundError as e:
             raise CommandError('File at %s was not found' % os.path.join('data', file_path_on_disk))
-
-
-

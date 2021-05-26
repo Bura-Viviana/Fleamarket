@@ -6,17 +6,17 @@ AuthUserModel = get_user_model()
 
 
 class Orders(CustomModel):
-    id_client=models.ForeignKey(AuthUserModel, on_delete=models.CASCADE, related_name='client_orders')
-    id_producer=models.ForeignKey(AuthUserModel, on_delete=models.CASCADE, related_name='producer_orders')
-    order_data=models.DateTimeField(auto_now_add=True)
-    completion_date=models.DateTimeField()
+    id_client = models.ForeignKey(AuthUserModel, on_delete=models.CASCADE, related_name='client_orders')
+    id_producer = models.ForeignKey(AuthUserModel, on_delete=models.CASCADE, related_name='producer_orders')
+    order_data = models.DateTimeField(auto_now_add=True)
+    completion_date = models.DateTimeField()
 
     class Status(models.TextChoices):
         created = "the order was placed"
         processing = "processing order"
         ready_for_pickup = "the order is ready"
         completed = "client received the order"
-    status=models.TextField(choices=Status.choices,null=False,default=Status.created)
+    status = models.TextField(choices=Status.choices, null=False, default=Status.created)
 
     # class Review(models.IntegerChoices):
     #     is_target=1

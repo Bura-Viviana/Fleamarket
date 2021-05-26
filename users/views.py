@@ -8,9 +8,9 @@ from users.forms import RegisterForm
 # Create your views here.
 def register_view(request):
     if request.method == 'GET':
-        form=RegisterForm()
+        form = RegisterForm()
     else:
-        form=RegisterForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')

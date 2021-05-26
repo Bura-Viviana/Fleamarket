@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link href="{% static 'css/pizza.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+    {% include 'producers/producer_filters.html' %}
+    {% include 'pagination.html' %}
+    <ul class="producers-list">
+        {% for producer in page_obj %}
+            <li>
+                <img src="{{ producer.picture.url }}"  />
+                <div class="name-and-price">
+                    <div>{{ producer.user.first_name }} {{ producer.user.last_name }}</div>
+                    <div>{{ producer.about }}</div>
+                </div>
+            </li>
+            <br>
+            <br>
+        {% endfor %}
+    </ul>
+{% endblock %}

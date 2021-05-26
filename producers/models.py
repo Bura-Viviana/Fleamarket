@@ -17,8 +17,8 @@ class ProductCategories(CustomModel):
 
 
 class Products(CustomModel):
-    id_category = models.ForeignKey(ProductCategories, on_delete=models.CASCADE)
-    id_owner = models.ForeignKey(AuthUserModel, on_delete=models.CASCADE)
+    category = models.ForeignKey(ProductCategories, on_delete=models.CASCADE)
+    owner = models.ForeignKey(Producers, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=500)
     unit = models.CharField(max_length=10)
