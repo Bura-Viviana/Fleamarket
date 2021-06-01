@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link href="{% static 'css/producers.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+    {% include 'products/product_filters.html' %}
+    {% include 'pagination.html' %}
+    <ul class="products-list">
+        {% for product in page_obj %}
+            <li>
+<!--                <img src="{{ producer.picture.url }}"  />-->
+                <div class="product-details">
+                    <div>{{ product.category.name }}  -- {{ product.name }}</div>
+                    <div>Producator: {{ product.owner.user.first_name }} {{ product.owner.user.last_name }}</div>
+                    <div>1 {{ product.unit }} = {{ product.price }} RON</div>
+                </div>
+            </li>
+            <br>
+            <br>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -63,7 +63,6 @@ class RegisterForm(forms.Form):
         password = self.cleaned_data.get('password')
         email = self.cleaned_data.get('email')
 
-
         user = AuthUser.objects.create_user(
             first_name=first_name,
             last_name=last_name,

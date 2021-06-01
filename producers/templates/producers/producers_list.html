@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block style %}
-    <link href="{% static 'css/pizza.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/producers.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block content %}
@@ -12,7 +12,7 @@
         {% for producer in page_obj %}
             <li>
                 <img src="{{ producer.picture.url }}"  />
-                <div class="name-and-price">
+                <div class="producer-details">
                     <div>{{ producer.user.first_name }} {{ producer.user.last_name }}</div>
                     <div>{{ producer.about }}</div>
                 </div>

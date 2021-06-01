@@ -9,8 +9,6 @@ from producers.models import Producers, ProductCategories, Products
 
 
 class SearchAndFilterProducers(forms.Form):
-    # search_term = forms.CharField(max_length=255, required=False, label='Search by Category')
-    # order_by = forms.ChoiceField(choices=OrderBy.choices, required=False, label='Order by')
     categories = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple,
         choices=(),
@@ -56,3 +54,47 @@ class SearchAndFilterProducers(forms.Form):
         else:
             # if anything was wrong with the forms (maybe?) we return ALL producers
             return Producers.objects.all().order_by('name')
+
+
+class SearchAndFilterProducts(forms.Form):
+    categories = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        choices=(),
+        required=False,
+        label='Categories'
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        categories = ProductCategories.objects.all()
+        categories_choices = tuple([(category.id, category.name) for category in categories])
+        self.fields['categories'].choices = categories_choices
+
+    def clean_categories(self):
+        categories = self.cleaned_data.get('categories', [])
+
+        try:
+            categories = [int(category_id) for category_id in categories]
+        except ValueError:
+            raise forms.ValidationError('Ingredient IDs must be integers.')
+
+        return categories
+
+    def get_filtered_products(self):
+        if self.is_valid():
+            desired_categories = self.cleaned_data.get('categories', [])
+            print('jere')
+            if len(desired_categories) == 0:
+                # we return ALL producers
+                return Products.objects.all().order_by('name')
+
+            # get all products having desired_category
+            print(desired_categories)
+
+            expected_products = Products.objects.filter(category__in=desired_categories)
+
+            return expected_products
+        else:
+            # if anything was wrong with the forms (maybe?) we return ALL producers
+            return Products.objects.all().order_by('name')

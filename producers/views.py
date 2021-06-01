@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect, reverse, Http404, render
 from django.views.generic import ListView
 from django.core.paginator import Paginator
-from producers.forms.filter import SearchAndFilterProducers
+from producers.forms.filter import SearchAndFilterProducers, SearchAndFilterProducts
 # from utils.cart import Cart
 
 # Create your views here.
@@ -29,6 +29,19 @@ def producers_list_view(request):
     one_page = paginator.get_page(page_number)
 
     return render(request, 'producers/producers_list.html', {
+        'page_obj': one_page,
+        'form': form,
+    })
+
+
+def products_list_view(request):
+    form = SearchAndFilterProducts(request.GET)
+    products_list = form.get_filtered_products()
+    paginator = Paginator(products_list, 2)
+    page_number = request.GET.get('page', 1)
+    one_page = paginator.get_page(page_number)
+
+    return render(request, 'products/products_list.html', {
         'page_obj': one_page,
         'form': form,
     })
